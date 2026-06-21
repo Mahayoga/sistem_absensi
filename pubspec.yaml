@@ -9,6 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_map: ^8.3.0
+  geocoding: ^4.0.0
+  geolocator: ^14.0.3
+  latlong2: ^0.9.1
+  path: ^1.9.1
+  shared_preferences: ^2.5.5
+  sqflite: ^2.4.3
 
 dev_dependencies:
   flutter_test:

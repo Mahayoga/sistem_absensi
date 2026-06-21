@@ -1,20 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'screens/login_page.dart';
+import 'screens/home_page.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+
+  const MyApp({super.key});
+
+  Future<bool> checkLogin() async {
+
+    final pref =
+        await SharedPreferences.getInstance();
+
+    return pref.getInt('user_id') != null;
+
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
+      home: FutureBuilder<bool>(
+
+        future: checkLogin(),
+
+        builder: (context, snapshot) {
+
+          if (!snapshot.hasData) {
+
+            return const Scaffold(
+              body: Center(
+                child:
+                CircularProgressIndicator(),
+              ),
+            );
+
+          }
+
+          if (snapshot.data == true) {
+
+            return const HomePage();
+
+          }
+
+          return const LoginPage();
+
+        },
+
       ),
+
     );
+
   }
+
 }
