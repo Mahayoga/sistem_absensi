@@ -64,7 +64,7 @@ class _HistoryPageState
 
                     ListTile(
                       title: Text(item['check_in_time']),
-                      subtitle: Text("Lat2: $lat, Lng: $lng"),
+                      subtitle: Text("Lat: $lat, Lng: $lng"),
                     ),
 
                     // 🗺️ MINI MAP
